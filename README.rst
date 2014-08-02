@@ -28,7 +28,8 @@ Goal
 - **From the basics to the useful advanced features**: I will not only explains the basics: I will guide you until you get a modern, publication-quality figure.
 - I will not try to cover every possible plots or every options: this tutorial is not a replacement for the documentation or the already existing tutorials.
 
-  For another tutorial about "good" design with matplotlib: http://nbviewer.ipython.org/gist/olgabot/5357268 ; most of the suggested best practices have been incorporated in `prettyplotlib <http://olgabot.github.io/prettyplotlib/>`_, an add-on to matplotlib. We are not using this library here because our goal is to teach how to customize matplotlib to your own needs, but many of our suggestion are similar to those performed by prettyplotlib.
+
+For another tutorial about "good" design with matplotlib: http://nbviewer.ipython.org/gist/olgabot/5357268 ; most of the suggested best practices have been incorporated in `prettyplotlib <http://olgabot.github.io/prettyplotlib/>`_, an add-on to matplotlib. We are not using this library here because our goal is to teach how to customize matplotlib to your own needs, but many of our suggestion are similar to those performed by prettyplotlib.
 
 **Design is always a personal choice**: do your own choices, but take the time to learn the current best practices before choosing to ignore them!
 
