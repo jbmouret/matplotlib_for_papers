@@ -16,7 +16,7 @@ Jean-Baptiste Mouret -- mouret@isir.upmc.fr / http://pages.isir.upmc.fr/~mouret
 Introduction
 ============
 
-This repository contains the handout (and the source of the handout) for the tutorial "Creating publication-quality with Python and Matplotlib", given at the [Alife 2014 conference](http://blogs.cornell.edu/alife14nyc/).
+This repository contains the handout (and the source of the handout) for the tutorial "Creating publication-quality with Python and Matplotlib", given at the `Alife 2014 conference <http://blogs.cornell.edu/alife14nyc/>`.
 
 Contributions are welcomed: feel free to clone and send pull requests.
 
