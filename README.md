@@ -7,9 +7,9 @@ This repository contains the handout (and the source of the handout) for the tut
 
 Any contribution to make this tutorial better is welcomed: feel free to clone and send pull requests.
 
-You can access to the handout [here](matplotlib.html).
+You can access to the handout [here]( http://htmlpreview.github.com/?https://github.com/jbmouret/matplotlib_for_papers/blob/master/matplotlib.html).
 
-The main source is [here](matplotlib.rst).
+The main source is [here](matplotlib.rst) (github interprets the rst).
 
 This is a [docutils](http://docutils.sourceforge.net/) document, written in [reStructuredText](http://docutils.sourceforge.net/rst.html). To generate a html version:
 
