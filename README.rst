@@ -16,7 +16,9 @@ Jean-Baptiste Mouret -- mouret@isir.upmc.fr / http://pages.isir.upmc.fr/~mouret
 Introduction
 ============
 
-* This tutorial is hosted on github: don't hesitate to clone the repository and send pull requests. You can access to the repository `here <http://github.com/jbmouret/matplotlib_for_papers>`_.
+This repository contains the handout (and the source of the handout) for the tutorial "Creating publication-quality with Python and Matplotlib", given at the [Alife 2014 conference](http://blogs.cornell.edu/alife14nyc/).
+
+Contributions are welcomed: feel free to clone and send pull requests.
 
 
 Goal
@@ -599,10 +601,7 @@ Until now, we only used pylab functions but we need to use a more 'matplotlib wa
  - we create a subplot and store a pointer to the result in ax *ax = fig.add_subplot(111)* [we will talk about the arguments of add_subplot in the next section]
  - now, all the plot-like commands should act on ax (e.g. *ax.plot(...)*); the savefig is a method of the Figure class.
 
-So, the final file:
-
-.. include:: src/plot_variance_matplotlib.py
-    :code: python
+So, the `final file <src/plot_variance_matplotlib.py>`_
 
 
 
@@ -1006,10 +1005,8 @@ The next step is to draw these stars on our plot using the *annotate* method (yo
 
 
 
-And the final file:
+And the `final file <src/boxplot5.py>`_
 
-.. include:: src/boxplot5.py
-    :code: python
 
 
 
