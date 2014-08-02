@@ -16,7 +16,7 @@ Jean-Baptiste Mouret -- mouret@isir.upmc.fr / http://pages.isir.upmc.fr/~mouret
 Introduction
 ============
 
-* This tutorial is hosted on github: don't hesitate to clone the repository and send pull requests. You can access to the repository `here <http://github.com/jbmouret/matplotlib_for_papers>`.
+* This tutorial is hosted on github: don't hesitate to clone the repository and send pull requests. You can access to the repository `here <http://github.com/jbmouret/matplotlib_for_papers>`_.
 
 
 Goal
