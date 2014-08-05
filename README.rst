@@ -778,7 +778,7 @@ We load the data in the same way as before:
  data_low_mut = load('data/low_mut')
  data_high_mut = load('data/high_mut')
 
-As before, we create a figure and a sublot (could be useful later):
+As before, we create a figure and a subplot (could be useful later):
 
 .. code:: python
 
