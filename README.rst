@@ -989,10 +989,6 @@ As before, we create a figure and a subplot (could be useful later):
  ax = fig.add_subplot(111)
 
 
-.. Image:: figs/boxplot1.png
-   :target: src/boxplot.py
-   :align: right
-
 Since we are interested in the 100th generation, we extract the data from the maxtrix:
 
 .. code:: python
@@ -1006,6 +1002,11 @@ Now we create a boxplot:
 .. code:: python
 
  bp = ax.boxplot([low_mut_100, high_mut_100])
+
+
+.. Image:: figs/boxplot1.png
+   :target: src/boxplot.py
+   :align: right
 
 
 \... easy, but not pretty!
