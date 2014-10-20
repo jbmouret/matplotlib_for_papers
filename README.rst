@@ -152,6 +152,25 @@ Your first plot
 .. include:: src/example1.py
     :code: python
 
+.. code:: python
+ 
+ # Pylab includes numpy as 'np'
+ from pylab import *
+
+ # create an array of 256 points (x), from -pi to +pi
+ x = np.linspace(-np.pi, np.pi, 256)
+
+ # compute cos(x) [thanks to numpy, cos(x) returns an array]
+ y = np.cos(x)
+
+ # compute the plot
+ plot(x, y)
+
+ # Show it in a new window
+ show()
+
+
+
 .. Image:: figs/first_plot.png
    :align: right
    :target: src/example1.py
@@ -161,6 +180,24 @@ The *show()* function will create an interactive window in which you can zoom, m
 
 .. include:: src/example1_bis.py
     :code: python
+
+.. code:: python
+ # Pylab includes numpy as 'np'
+ from pylab import *
+
+ # create an array of 256 points (x), from -pi to +pi
+ x = np.linspace(-np.pi, np.pi, 256)
+
+ # compute cos(x) [thanks to numpy, cos(x) returns an array]
+ y = np.cos(x)
+
+ # compute the plot
+ plot(x, y)
+
+ # save in test.png (use test.pdf for a pdf file)
+ savefig("test.png")
+
+
 
 Typical supported formats are (the exact list depends on the backend):
  
@@ -218,6 +255,20 @@ To plot the data, we use the same plot function as before. Don't forget to call 
 .. include:: src/example2.py
     :code: python
 
+.. code:: python
+ # this will load numpy for us
+ from pylab import *
+
+ # load the file and store the result in data
+ data = np.loadtxt('file.dat')
+
+ # generate a x array of the size of the file
+ x = np.arange(0, len(data))
+
+ # plot
+ plot(x, data)
+ show()
+
 
 
 .. Image:: figs/example2_bis.png
@@ -230,6 +281,23 @@ To plot several lines, just call plot several times (the color is automatically 
 .. include:: src/example2_bis.py
     :code: python
 
+.. code:: python
+ # this will load numpy for us
+ from pylab import *
+
+ # load the file and store the result in data
+ data = np.loadtxt('file.dat')
+ data2 = np.loadtxt('file2.dat')
+
+ # generate a x array of the size of the file
+ x = np.arange(0, len(data))
+
+ # plot
+ plot(x, data, label='data1')
+ plot(x, data2, label='data2')
+ legend()
+ savefig('example2_bis.png')
+
 
 Changing the color and the type of line
 ----------------------------------------
@@ -241,6 +309,24 @@ Changing the color and the type of line
 
 .. include:: src/example1_color.py
     :code: python
+
+.. code:: python
+
+ from pylab import *
+
+ x = np.linspace(-np.pi, np.pi, 256)
+ y = []
+ for i in range(0, 7):
+  y += [np.cos(x + i)]
+
+ plot(x, y[0], color='red', linewidth=2.5, linestyle='-', label='linestyle="_"')
+ plot(x, y[1], color='blue', linewidth=5, alpha=0.5, linestyle='-', label='lines tyle="-"')
+ plot(x, y[2], color='#aa0000', linewidth=1, linestyle='--', label='linestyle="--"')
+ plot(x, y[3], color='black', linestyle=':', label='linestyle=":"')
+ plot(x, y[4], color='black', linewidth=2, linestyle='-.', label='linestyle="-."')
+
+ legend()
+ savefig('example1_color.png')
 
 .. Image:: figs/example1_color.png
    :align: right
@@ -295,6 +381,25 @@ Example:
 
 .. include:: src/example2_lims.py
     :code: python
+
+.. code:: python
+
+ # this will load numpy for us
+ from pylab import *
+ data = np.loadtxt('file.dat')
+ x = np.arange(0, len(data))
+
+ #change the limits
+ xlim(1.5, 3.4)
+ ylim(-2, 4)
+
+ #ticks
+ xticks([0, 1, 2, 3], ['T0', 'T1', 'T2', 'T3'])
+ # use np.arange to generate the array of ticks
+ yticks(np.arange(-2, 4, 0.5))
+
+ plot(x, data)
+ savefig('example2_lims.png')
 
 
 
@@ -360,7 +465,33 @@ Let first load the data. We can use the *glob* module, from python, to get the l
 .. include:: src/load_data.py
     :code: python
 
-.. admonition:: Median vs Mean
+.. code:: python
+
+ # glob allows us to list the files that match a pattern
+ import glob
+
+ # pylab will be useful later
+ from pylab import *
+
+ # a simple function to load our files
+ def load(dir):
+     # example : exp_9/node05_2014-07-15_16_42_48_5178/bestfit.dat
+     f_list = glob.glob(dir + '/*/*/bestfit.dat')
+     d = []
+     for f in f_list:
+         d += [np.loadtxt(f)]
+     return d
+
+ # load our data
+ data_low_mut = load('data/low_mut')
+ data_high_mut = load('data/high_mut')
+
+ print data_low_mut
+ print data_high_mut
+
+
+Median vs Mean
+--------------
 
  Using the mean + standard deviation assumes that your data are *normally distributed*. This assumption is usually wrong in evolutionary computation (and in experimental computer science). For instance, your algorithm may fail 30% of the time (fitness = 0) and succeed 70% of the time (fitness = 1): you have two peaks and the distribution is not Gaussian at all. In addition, the standard deviation assumes that the distribution is symmetric, which is clearly not the case when there is a maximum that cannot be exceeded.
 
@@ -382,6 +513,40 @@ However, our goal is to compute the median over all the runs, at each generation
 .. include:: src/load_data2.py
     :code: python
 
+.. code:: python
+
+ # glob allows us to list the files that match a pattern
+ import glob
+
+ # pylab will be useful later
+ from pylab import *
+
+ # a simple function to load our files
+ # we assume that each file has the same number of rows (generations)
+ def load(dir):
+     # example : exp_9/node05_2014-07-15_16_42_48_5178/bestfit.dat
+     f_list = glob.glob(dir + '/*/*/bestfit.dat')
+    
+     # get the number of lines of the first file, to know the size of the matrix
+     num_lines = sum(1 for line in open(f_list[0]))
+  
+     # be careful that np.zeros takes a tuple as argument (size1, size)
+     # therefore we need two parentheses
+     i = 0;
+     data = np.zeros((len(f_list), num_lines)) 
+
+     for f in f_list:
+         # we ignore the first column of the file        
+         data[i, :] = np.loadtxt(f)[:,1]
+         i += 1
+     return data
+
+ # load our data
+ data_low_mut = load('data/low_mut')
+ data_high_mut = load('data/high_mut')
+ print data_low_mut
+
+
 .. admonition:: Documentation
 
   - `np.median() <http://docs.scipy.org/doc/numpy/reference/generated/numpy.median.html>`_
@@ -394,6 +559,44 @@ Now the data are nicely formatted, we can compute medians an plot them.
 
 .. include:: src/plot_median.py
     :code: python
+
+.. code:: python
+
+ import glob
+ from pylab import *
+
+ def load(dir):
+     f_list = glob.glob(dir + '/*/*/bestfit.dat')
+     num_lines = sum(1 for line in open(f_list[0]))
+     i = 0;
+     data = np.zeros((len(f_list), num_lines)) 
+     for f in f_list:
+         data[i, :] = np.loadtxt(f)[:,1]
+         i += 1
+     return data
+
+ # compute the median of each column
+ def med(data):
+     median = np.zeros(data.shape[1])
+     for i in range(0, len(median)):
+         median[i] = np.median(data[:, i])
+     return median
+
+ data_low_mut = load('data/low_mut')
+ data_high_mut = load('data/high_mut')
+
+ # generate the x
+ n_generations = data_low_mut.shape[1]
+ x = np.arange(0, n_generations)
+
+ # compute the medians
+ med_low_mut = med(data_low_mut)
+ med_high_mut = med(data_high_mut)
+
+ plot(x, med_low_mut)
+ plot(x, med_high_mut)
+
+ savefig('medians1.png')
 
 
 We can use *xlim* and *lim* to see a bit better:
