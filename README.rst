@@ -634,9 +634,7 @@ Examples of a better vizualization (according to Tufte):
 
 A publication-quality figure
 ----------------------------
-.. Image:: figs/medians3.png
-   :target: src/plot_medians3.py
-   :align: right
+
 	 
 We first play with the parameters to get the size right:
 
@@ -687,6 +685,11 @@ Last, we can make the figure a bit lighter by removing the frame and adding a li
   axes(frameon=0)
   grid() 
 
+
+.. Image:: figs/medians3.png
+   :target: src/plot_medians3.py
+   :align: right
+
 Adding quartiles
 ----------------
 
@@ -695,9 +698,6 @@ Adding quartiles
   - `Quartiles (Wikipedia) <http://en.wikipedia.org/wiki/Quartile>`_
   - `percentile() (numpy) <http://docs.scipy.org/doc/numpy-dev/reference/generated/numpy.percentile.html>`_
 
-.. Image:: figs/variance.png
-   :target: src/plot_variance.py
-   :align: right
 	 
 Quartiles are computed with numpy in the same way as the median, but using the function *percentile*.
 
@@ -731,6 +731,11 @@ We will use the function *fill_between* to display the quartiles on our plot. We
   - `pylab / pyplot API <http://matplotlib.org/api/pyplot_api.html>`_
 
 
+.. Image:: figs/variance.png
+   :target: src/plot_variance.py
+   :align: right
+
+
 Better colors
 -------------
 Try to go away from the classic 100% red/100% blue/etc. There are many color scheme generators on the web: you select a nice color, and they generate matching colors, given the number of colors you need.
@@ -742,11 +747,6 @@ Try to go away from the classic 100% red/100% blue/etc. There are many color sch
 
 An interesting alternative is to use the python package brewer2mpl, which implements the guidelines published by `C. Brewer <http://www.personal.psu.edu/cab38/>`_ and colleagues  for coloring maps with sequential, divergent, and qualitative colors:  http://colorbrewer2.org/
 
-
-
-.. Image:: figs/variance_colors.png
-   :target: src/plot_variance_mpl.py
-   :align: right
 
 
 
@@ -789,6 +789,12 @@ The box for the legend is useless now that we don't have vertical lines. Let's r
 
  frame.set_facecolor('1.0')
  frame.set_edgecolor('1.0')
+
+
+.. Image:: figs/variance_colors.png
+   :target: src/plot_variance_mpl.py
+   :align: right
+
 
 
 Pylab vs Matplotlib
@@ -859,10 +865,6 @@ To create our figure, we will put all our current code in a function that takes 
    ax.set_xticks(np.arange(min_gen, max_gen, 100))
 
 
-.. Image:: figs/variance_subplot.png
-   :target: src/plot_variance_subplots.py
-   :align: right
-
 Then we simply call this function with different axes:
 
 .. code:: python
@@ -873,6 +875,11 @@ Then we simply call this function with different axes:
  ax2 = fig.add_subplot(122)
  plot_data(ax2, 0, 110)
  fig.savefig('variance_subplot.png')
+
+.. Image:: figs/variance_subplot.png
+   :target: src/plot_variance_subplots.py
+   :align: right
+
 
 As you can see, the result is far from perfect (yet!). First, we need to adjust the width of the figure:
 
@@ -1066,10 +1073,6 @@ Given an instance of boxplot:
  bp = ax.boxplot([data_fit, data_onp])
 
 
-.. Image:: figs/boxplot3.png
-   :target: src/boxplot3.py
-   :align: right
-
 We need to iterate over all the objects to change their attributes:
 
 .. code:: python
@@ -1100,9 +1103,11 @@ We need to iterate over all the objects to change their attributes:
     for c in bp['caps']:
         c.set_linewidth(0)
 
-.. Image:: figs/boxplot4.png
-   :target: src/boxplot4.py
+
+.. Image:: figs/boxplot3.png
+   :target: src/boxplot3.py
    :align: right
+
 
 I don't know any simple way to fill the boxes. A workaround is to redraw them (this is not a subtle way, but it works!):
 
@@ -1120,6 +1125,11 @@ I don't know any simple way to fill the boxes. A workaround is to redraw them (t
         boxCoords = zip(boxX,boxY)
         boxPolygon = Polygon(boxCoords, facecolor = colors[i], linewidth=0)
         ax.add_patch(boxPolygon)
+
+.. Image:: figs/boxplot4.png
+   :target: src/boxplot4.py
+   :align: right
+
 
 Finally, to give more space to the y labels:
 
@@ -1189,10 +1199,6 @@ This value is usually converted to stars as follows:
  `Annotating text <http://matplotlib.org/users/annotations_intro.html>`_
 
 
-.. Image:: figs/boxplot5.png
-   :target: src/boxplot5.py
-   :align: right
-
 The next step is to draw these stars on our plot using the *annotate* method (you may have to fine-tune the y-coordinates of the stars). 
 
 .. code:: python
@@ -1212,6 +1218,10 @@ The next step is to draw these stars on our plot using the *annotate* method (yo
 
 And the `final file <src/boxplot5.py>`_
 
+
+.. Image:: figs/boxplot5.png
+   :target: src/boxplot5.py
+   :align: right
 
 
 
