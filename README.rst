@@ -33,7 +33,7 @@ For another tutorial about "good" design with matplotlib: http://nbviewer.ipytho
 
 **Design is always a personal choice**: do your own choices, but take the time to learn the current best practices before choosing to ignore them!
 
-For a more classic and general introduction to matplotlib, check the nice tutorial made by N. Rougier: http://www.loria.fr/~rougier/teaching/matplotlib/
+For a more classic and general introduction to matplotlib, check the nice tutorial made by N. Rougier: http://www.labri.fr/perso/nrougier/teaching/matplotlib/
 
 For some inspiration about what is possible, check:
  
