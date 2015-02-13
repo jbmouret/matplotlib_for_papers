@@ -139,6 +139,7 @@ R (ggplot2):
 Basics
 ======
 
+*In most cases, click on the image to get the corresponding source code*
 
 Your first plot
 ---------------
@@ -937,7 +938,7 @@ The result:
    :target: src/plot_variance_subplots_ter.py
 
 
-
+`Final file <src/plot_variance_subplots_ter.py>`_
 
 
 Box plot
@@ -1143,6 +1144,8 @@ And to have x labels:
 
  ax.set_xticklabels(['low\nmutation','high\nmutation'])
 
+
+`=> Final file <src/boxplot4.py>`_
 
 Stars (statistical significance)
 --------------------------------
