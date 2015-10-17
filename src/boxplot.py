@@ -1,4 +1,4 @@
-boximport glob
+import glob
 from pylab import *
 
 
