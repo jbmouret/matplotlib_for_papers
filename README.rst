@@ -68,7 +68,7 @@ Examples of figures:
 
 
 
-What is Matplolib?
+What is Matplotlib?
 ------------------
 Principle
 .........
