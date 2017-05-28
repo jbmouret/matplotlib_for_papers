@@ -711,7 +711,7 @@ Quartiles are computed with numpy in the same way as the median, but using the f
     for i in range(0, len(median)):
         median[i] = np.median(data[:, i])
         perc_25[i] = np.percentile(data[:, i], 25)
-        perc_75[i] = np.percentile(data[:, i], 25)
+        perc_75[i] = np.percentile(data[:, i], 75)
     return median, perc_25, perc_75
 
   [...]
