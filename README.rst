@@ -3,7 +3,7 @@ Creating publication-quality figures with Matplotlib
 ====================================================
 
 -------------------------------------------------------------------------------
-Jean-Baptiste Mouret -- mouret@isir.upmc.fr / http://pages.isir.upmc.fr/~mouret
+Jean-Baptiste Mouret -- jean-baptiste.mouret@inria.fr
 -------------------------------------------------------------------------------
 
 .. contents::
