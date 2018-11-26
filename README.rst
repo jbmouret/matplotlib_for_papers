@@ -421,7 +421,7 @@ Basics
 ------
 Loading the data
 ................
-You can download the data used in this example `by following this link <http://chronos.isir.upmc.fr/~mouret/alife_matplotlib/src/data/data.tar.gz>`_.
+You can download the data used in this example `by following this link <https://github.com/jbmouret/matplotlib_for_papers/blob/master/src/data/data.tar.gz?raw=true>`_.
 
 Our data are organized as follows:
 
