@@ -533,7 +533,7 @@ However, our goal is to compute the median over all the runs, at each generation
   
      # be careful that np.zeros takes a tuple as argument (size1, size)
      # therefore we need two parentheses
-     i = 0;
+     i  = 0
      data = np.zeros((len(f_list), num_lines)) 
 
      for f in f_list:
@@ -569,7 +569,7 @@ Now the data are nicely formatted, we can compute medians an plot them.
  def load(dir):
      f_list = glob.glob(dir + '/*/*/bestfit.dat')
      num_lines = sum(1 for line in open(f_list[0]))
-     i = 0;
+     i  = 0
      data = np.zeros((len(f_list), num_lines)) 
      for f in f_list:
          data[i, :] = np.loadtxt(f)[:,1]
@@ -643,7 +643,7 @@ We first play with the parameters to get the size right:
 
  params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
@@ -888,7 +888,7 @@ As you can see, the result is far from perfect (yet!). First, we need to adjust 
 
  params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
@@ -979,7 +979,7 @@ We load the data in the same way as before:
  def load(dir):
     f_list = glob.glob(dir + '/*/*/bestfit.dat')
     num_lines = sum(1 for line in open(f_list[0]))
-    i = 0;
+    i  = 0
     data = np.zeros((len(f_list), num_lines)) 
     for f in f_list:
         data[i, :] = np.loadtxt(f)[:,1]
@@ -1027,7 +1027,7 @@ First, image and font size:
  
  params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,

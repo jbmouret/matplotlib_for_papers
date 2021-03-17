@@ -1,14 +1,13 @@
 import glob
 from pylab import *
-import brewer2mpl
 
- # brewer2mpl.get_map args: set name  set type  number of colors
-bmap = brewer2mpl.get_map('Set2', 'qualitative', 7)
-colors = bmap.mpl_colors
- 
+# import colors
+from palettable.colorbrewer.qualitative import Set2_7
+colors = Set2_7.mpl_colors
+
 params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
@@ -21,12 +20,13 @@ rcParams.update(params)
 def load(dir):
     f_list = glob.glob(dir + '/*/*/bestfit.dat')
     num_lines = sum(1 for line in open(f_list[0]))
-    i = 0;
-    data = np.zeros((len(f_list), num_lines)) 
+    i = 0
+    data = np.zeros((len(f_list), num_lines))
     for f in f_list:
-        data[i, :] = np.loadtxt(f)[:,1]
+        data[i, :] = np.loadtxt(f)[:, 1]
         i += 1
     return data
+
 
 def perc(data):
     median = np.zeros(data.shape[1])
@@ -37,7 +37,6 @@ def perc(data):
         perc_25[i] = np.percentile(data[:, i], 25)
         perc_75[i] = np.percentile(data[:, i], 75)
     return median, perc_25, perc_75
-
 
 
 def plot_data(ax, min_gen, max_gen, use_y_labels, use_legend):
@@ -52,14 +51,13 @@ def plot_data(ax, min_gen, max_gen, use_y_labels, use_legend):
 
     # offset the spines
     for spine in ax.spines.values():
-            spine.set_position(('outward', 5))
+        spine.set_position(('outward', 5))
     ax.grid(axis='y', color="0.9", linestyle='-', linewidth=1)
     # put the grid behind
     ax.set_axisbelow(True)
 
-    ax.fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color=colors[0]) 
+    ax.fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color=colors[0])
     ax.fill_between(x, perc_25_high_mut, perc_75_high_mut, alpha=0.25, linewidth=0, color=colors[1])
-
 
     ax.plot(x, med_low_mut, linewidth=2, color=colors[0])
     ax.plot(x, med_high_mut, linewidth=2, linestyle='--', color=colors[1])
@@ -68,14 +66,14 @@ def plot_data(ax, min_gen, max_gen, use_y_labels, use_legend):
     ax.set_xlim(min_gen, max_gen)
     ax.set_ylim(-5000, 300)
 
-    #change xticks to set_xticks
+    # change xticks to set_xticks
     ax.set_xticks(np.arange(min_gen, max_gen, 100))
 
     if not use_y_labels:
         ax.set_yticklabels([])
 
     if use_legend:
-        legend = ax.legend(["Low mutation rate", "High Mutation rate"], loc=4);
+        legend = ax.legend(["Low mutation rate", "High Mutation rate"], loc=4)
         frame = legend.get_frame()
         frame.set_facecolor('1.0')
         frame.set_edgecolor('1.0')

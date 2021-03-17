@@ -4,7 +4,7 @@ from pylab import *
 
 params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
@@ -17,12 +17,13 @@ rcParams.update(params)
 def load(dir):
     f_list = glob.glob(dir + '/*/*/bestfit.dat')
     num_lines = sum(1 for line in open(f_list[0]))
-    i = 0;
-    data = np.zeros((len(f_list), num_lines)) 
+    i = 0
+    data = np.zeros((len(f_list), num_lines))
     for f in f_list:
-        data[i, :] = np.loadtxt(f)[:,1]
+        data[i, :] = np.loadtxt(f)[:, 1]
         i += 1
     return data
+
 
 def perc(data):
     median = np.zeros(data.shape[1])
@@ -33,6 +34,7 @@ def perc(data):
         perc_25[i] = np.percentile(data[:, i], 25)
         perc_75[i] = np.percentile(data[:, i], 75)
     return median, perc_25, perc_75
+
 
 data_low_mut = load('data/low_mut')
 data_high_mut = load('data/high_mut')
@@ -48,7 +50,7 @@ med_high_mut, perc_25_high_mut, perc_75_high_mut = perc(data_high_mut)
 axes(frameon=0)
 grid()
 
-fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color='#B22400') 
+fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color='#B22400')
 fill_between(x, perc_25_high_mut, perc_75_high_mut, alpha=0.25, linewidth=0, color='#006BB2')
 
 
@@ -60,7 +62,7 @@ ylim(-5000, 300)
 
 xticks(np.arange(0, 500, 100))
 
-legend = legend(["Low mutation rate", "High Mutation rate"], loc=4);
+legend = legend(["Low mutation rate", "High Mutation rate"], loc=4)
 frame = legend.get_frame()
 frame.set_facecolor('0.9')
 frame.set_edgecolor('0.9')
