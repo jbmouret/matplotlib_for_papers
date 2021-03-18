@@ -459,7 +459,7 @@ For each line of each bestfit.dat, we have the generation and the fitness of the
 
 .. admonition:: Documentation
 
-  - `glob() <https://docs.python.org/2/library/glob.html>`_
+  - `glob() <https://docs.python.org/3/library/glob.html>`_
 
 Let first load the data. We can use the *glob* module, from python, to get the list of relevant files:
 
@@ -556,9 +556,9 @@ Now the data are nicely formatted, we can compute medians an plot them.
 
 .. Image:: figs/medians1.png
    :align: right
-   :target: src/plot_median.py
+   :target: src/plot_medians.py
 
-.. include:: src/plot_median.py
+.. include:: src/plot_medians.py
     :code: python
 
 .. code:: python
@@ -609,7 +609,7 @@ We can use *xlim* and *lim* to see a bit better:
 
 
 .. Image:: figs/medians2.png
-   :target: src/plot_median2.py
+   :target: src/plot_medians2.py
 
 Minimizing ink
 --------------
