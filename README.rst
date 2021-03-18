@@ -36,7 +36,7 @@ For another tutorial about "good" design with matplotlib: http://nbviewer.ipytho
 For a more classic and general introduction to matplotlib, check the nice tutorial made by N. Rougier: http://www.labri.fr/perso/nrougier/teaching/matplotlib/
 
 For some inspiration about what is possible, check:
- 
+
 - the Matplotlib gallery: http://matplotlib.org/gallery.html
 - the Matplotlib examples: http://matplotlib.org/1.3.1/examples/
 - another gallery: https://github.com/rasbt/matplotlib-gallery
@@ -51,7 +51,7 @@ Examples of figures:
 
 .. figure:: figs/plosone.png
 
- 
+
 
 .. admonition:: Reference
 
@@ -104,16 +104,16 @@ Installation
  pip install matplotlib
 
 
-More info / alternative approaches: 
+More info / alternative approaches:
  - you can install Canopy Express (full python environment for scientists): https://store.enthought.com/
  - http://www.tapir.caltech.edu/~dtsang/python.html
  - http://penandpants.com/2012/02/24/install-python/
 
 
-- Debian / Ubuntu: 
+- Debian / Ubuntu:
 
 .. code:: bash
- 
+
  sudo apt-get install python-matplotlib
 
 - Windows: install `Canopy Express <https://store.enthought.com/>`_
@@ -154,7 +154,7 @@ Your first plot
     :code: python
 
 .. code:: python
- 
+
  # Pylab includes numpy as 'np'
  from pylab import *
 
@@ -201,7 +201,7 @@ The *show()* function will create an interactive window in which you can zoom, m
 
 
 Typical supported formats are (the exact list depends on the backend):
- 
+
 - pdf (vector format, useful for LaTeX papers compiled with pdflatex: no problem of resolution)
 - svg (vector format, useful to edit the graph with inkscape or Adobe Illustrator)
 - eps (vector format, useful for LaTeX papers compiled with the basic latex: no problem of resolution)
@@ -226,23 +226,23 @@ Matplotlib does not provide anything to load data from a file. However, since we
 We can use a simple loop (this approach is useful if your file is not a pure array of numbers, or if you want to skip some lines, etc.):
 
 .. code:: python
- 
+
  data = []
  for line in open('file.dat'):
    data += [float(line)]
  # to check
- print data
+ print(data)
 
 But we can also use numpy (one line of code):
 
 ..  code:: python
 
- # this will load numpy for us 
+ # this will load numpy for us
  from pylab import *
- 
+
  # load the file and store the result in data
  data = np.loadtxt('file.dat')
- print data
+ print(data)
 
 
 
@@ -360,7 +360,7 @@ Changing the limits:
 
  xlim(min_value, max_value)
  ylim(min_value, max_value)
- 
+
 The *ticks*:
 
 .. code:: python
@@ -487,8 +487,8 @@ Let first load the data. We can use the *glob* module, from python, to get the l
  data_low_mut = load('data/low_mut')
  data_high_mut = load('data/high_mut')
 
- print data_low_mut
- print data_high_mut
+ print(data_low_mut)
+ print(data_high_mut)
 
 
 Median vs Mean
@@ -527,17 +527,17 @@ However, our goal is to compute the median over all the runs, at each generation
  def load(dir):
      # example : exp_9/node05_2014-07-15_16_42_48_5178/bestfit.dat
      f_list = glob.glob(dir + '/*/*/bestfit.dat')
-    
+
      # get the number of lines of the first file, to know the size of the matrix
      num_lines = sum(1 for line in open(f_list[0]))
-  
+
      # be careful that np.zeros takes a tuple as argument (size1, size)
      # therefore we need two parentheses
      i  = 0
-     data = np.zeros((len(f_list), num_lines)) 
+     data = np.zeros((len(f_list), num_lines))
 
      for f in f_list:
-         # we ignore the first column of the file        
+         # we ignore the first column of the file
          data[i, :] = np.loadtxt(f)[:,1]
          i += 1
      return data
@@ -545,7 +545,7 @@ However, our goal is to compute the median over all the runs, at each generation
  # load our data
  data_low_mut = load('data/low_mut')
  data_high_mut = load('data/high_mut')
- print data_low_mut
+ print(data_low_mut)
 
 
 .. admonition:: Documentation
@@ -570,7 +570,7 @@ Now the data are nicely formatted, we can compute medians an plot them.
      f_list = glob.glob(dir + '/*/*/bestfit.dat')
      num_lines = sum(1 for line in open(f_list[0]))
      i  = 0
-     data = np.zeros((len(f_list), num_lines)) 
+     data = np.zeros((len(f_list), num_lines))
      for f in f_list:
          data[i, :] = np.loadtxt(f)[:,1]
          i += 1
@@ -603,7 +603,7 @@ Now the data are nicely formatted, we can compute medians an plot them.
 We can use *xlim* and *lim* to see a bit better:
 
 .. code:: python
- 
+
  xlim(-5, 400)
  ylim(-5000, 100)
 
@@ -616,7 +616,7 @@ Minimizing ink
 .. Image:: figs/tufte_book_cover.png
    :align: left
 
-Probably the most influential book about data vizualization: 
+Probably the most influential book about data vizualization:
 
 Tufte, Edward R. *The visual display of quantitative information.*, 2nd edition, Cheshire, CT: Graphics press, 2001.
 
@@ -636,7 +636,7 @@ Examples of a better vizualization (according to Tufte):
 A publication-quality figure
 ----------------------------
 
-	 
+
 We first play with the parameters to get the size right:
 
 .. code:: python
@@ -675,7 +675,7 @@ And don't forget to add a caption. The parameter *loc* determines the position (
 We might also want to remove some ticks, to lighten the figure.
 
 .. code:: python
- 
+
  xticks(np.arange(0, 500, 100))
 
 Last, we can make the figure a bit lighter by removing the frame and adding a light grid:
@@ -684,7 +684,7 @@ Last, we can make the figure a bit lighter by removing the frame and adding a li
 
   # put this _before_ the calls to plot and fill_between
   axes(frameon=0)
-  grid() 
+  grid()
 
 
 .. Image:: figs/medians3.png
@@ -699,7 +699,7 @@ Adding quartiles
   - `Quartiles (Wikipedia) <http://en.wikipedia.org/wiki/Quartile>`_
   - `percentile() (numpy) <http://docs.scipy.org/doc/numpy-dev/reference/generated/numpy.percentile.html>`_
 
-	 
+
 Quartiles are computed with numpy in the same way as the median, but using the function *percentile*.
 
 .. code:: python
@@ -715,7 +715,7 @@ Quartiles are computed with numpy in the same way as the median, but using the f
     return median, perc_25, perc_75
 
   [...]
-  
+
  # compute the medians and 25/75 percentiles
  med_low_mut, perc_25_low_mut, perc_75_low_mut = perc(data_low_mut)
  med_high_mut, perc_25_high_mut, perc_75_high_mut = perc(data_high_mut)
@@ -724,7 +724,7 @@ We will use the function *fill_between* to display the quartiles on our plot. We
 
 .. code:: python
 
- fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color='#B22400') 
+ fill_between(x, perc_25_low_mut, perc_75_low_mut, alpha=0.25, linewidth=0, color='#B22400')
  fill_between(x, perc_25_high_mut, perc_75_high_mut, alpha=0.25, linewidth=0, color='#006BB2')
 
 .. admonition:: Documentation
@@ -746,32 +746,29 @@ Try to go away from the classic 100% red/100% blue/etc. There are many color sch
   - http://www.perbang.dk/color+scheme/
   - http://www.colorsontheweb.com/colorwizard.asp
 
-An interesting alternative is to use the python package brewer2mpl, which implements the guidelines published by `C. Brewer <http://www.personal.psu.edu/cab38/>`_ and colleagues  for coloring maps with sequential, divergent, and qualitative colors:  http://colorbrewer2.org/
+An interesting alternative is to use the python package palettable, which implements the guidelines published by `C. Brewer <http://www.personal.psu.edu/cab38/>`_ and colleagues  for coloring maps with sequential, divergent, and qualitative colors:  https://jiffyclub.github.io/palettable/
 
 
 
 
 .. code:: bash
- 
- sudo pip install brewer2mpl
+
+ sudo pip install palettable
 
 
 And now, in our file:
 
 .. code:: python
- 
- import brewer2mpl
 
- # brewer2mpl.get_map args: set name  set type  number of colors
- bmap = brewer2mpl.get_map('Set2', 'qualitative', 7)
- colors = bmap.mpl_colors
- 
+ from palettable.colorbrewer.qualitative import Set2_7
+ colors = Set2_7.mpl_colors
+
 And we can use this array of colors in our plot commands:
 
 .. code:: python
- 
+
  fill_between(x, perc_25_low_mut, perc_75_low_mut, \
-	  alpha=0.25, linewidth=0, color=colors[0]) 
+	  alpha=0.25, linewidth=0, color=colors[0])
  fill_between(x, perc_25_high_mut, perc_75_high_mut, \
 	  alpha=0.25, linewidth=0, color=colors[1])
  plot(x, med_low_mut, linewidth=2, color=colors[0])
@@ -926,10 +923,8 @@ One last thing: we need to label our subplots. This can be easily done with *tex
 
 .. code:: python
 
- fig.text(0.01, 0.98, "A", weight="bold", horizontalalignment='left', verticalalignment='center') 
- fig.text(0.54, 0.98, "B", weight="bold", horizontalalignment='left', verticalalignment='center') 
-
-
+ fig.text(0.01, 0.98, "A", weight="bold", horizontalalignment='left', verticalalignment='center')
+ fig.text(0.54, 0.98, "B", weight="bold", horizontalalignment='left', verticalalignment='center')
 
 
 The result:
@@ -959,8 +954,8 @@ Goal:
 
 Boxplot:
 
-- Each box extends from the lower to upper quartile values of the data, with a symbol at the median. 
-- Whiskers extend to the most extreme data point within 1.5 * IQR, where IQR is the interquartile range. 
+- Each box extends from the lower to upper quartile values of the data, with a symbol at the median.
+- Whiskers extend to the most extreme data point within 1.5 * IQR, where IQR is the interquartile range.
 - Flier points (outliers) are those past the end of the whiskers.
 
 Basics
@@ -975,12 +970,12 @@ We load the data in the same way as before:
 
  import glob
  from pylab import *
- 
+
  def load(dir):
     f_list = glob.glob(dir + '/*/*/bestfit.dat')
     num_lines = sum(1 for line in open(f_list[0]))
     i  = 0
-    data = np.zeros((len(f_list), num_lines)) 
+    data = np.zeros((len(f_list), num_lines))
     for f in f_list:
         data[i, :] = np.loadtxt(f)[:,1]
         i += 1
@@ -1024,7 +1019,7 @@ Let's first add the settings we used for the previous plot.
 First, image and font size:
 
 .. code:: python
- 
+
  params = {
     'axes.labelsize': 8,
     'font.size': 8,
@@ -1079,10 +1074,9 @@ We need to iterate over all the objects to change their attributes:
 .. code:: python
 
  # colors, as before
- import brewer2mpl
- bmap = brewer2mpl.get_map('Set2', 'qualitative', 7)
- colors = bmap.mpl_colors
- 
+ from palettable.colorbrewer.qualitative import Set2_7
+ colors = Set2_7.mpl_colors
+
  for i in range(0, len(bp['boxes'])):
     bp['boxes'][i].set_color(colors[i])
     # we have two whiskers!
@@ -1090,12 +1084,9 @@ We need to iterate over all the objects to change their attributes:
     bp['whiskers'][i*2 + 1].set_color(colors[i])
     bp['whiskers'][i*2].set_linewidth(2)
     bp['whiskers'][i*2 + 1].set_linewidth(2)
-    # top and bottom fliers 
+    # fliers
     # (set allows us to set many parameters at once)
-    bp['fliers'][i * 2].set(markerfacecolor=colors[i],
-                    marker='o', alpha=0.75, markersize=6,
-                    markeredgecolor='none')
-    bp['fliers'][i * 2 + 1].set(markerfacecolor=colors[i],
+    bp['fliers'][i].set(markerfacecolor=colors[i],
                     marker='o', alpha=0.75, markersize=6,
                     markeredgecolor='none')
     bp['medians'][i].set_color('black')
@@ -1123,7 +1114,7 @@ I don't know any simple way to fill the boxes. A workaround is to redraw them (t
     for j in range(5):
         boxX.append(box.get_xdata()[j])
         boxY.append(box.get_ydata()[j])
-        boxCoords = zip(boxX,boxY)
+        boxCoords = list(zip(boxX,boxY))
         boxPolygon = Polygon(boxCoords, facecolor = colors[i], linewidth=0)
         ax.add_patch(boxPolygon)
 
@@ -1135,7 +1126,7 @@ I don't know any simple way to fill the boxes. A workaround is to redraw them (t
 Finally, to give more space to the y labels:
 
 .. code:: python
- 
+
  fig.subplots_adjust(left=0.2)
 
 And to have x labels:
@@ -1202,7 +1193,7 @@ This value is usually converted to stars as follows:
  `Annotating text <http://matplotlib.org/users/annotations_intro.html>`_
 
 
-The next step is to draw these stars on our plot using the *annotate* method (you may have to fine-tune the y-coordinates of the stars). 
+The next step is to draw these stars on our plot using the *annotate* method (you may have to fine-tune the y-coordinates of the stars).
 
 .. code:: python
 
@@ -1215,7 +1206,7 @@ The next step is to draw these stars on our plot using the *annotate* method (yo
                             connectionstyle="bar,fraction=0.2"))
  ax.text(1.5, y_max + abs(y_max - y_min)*0.1, stars(p_value),
         horizontalalignment='center',
-        verticalalignment='center') 
+        verticalalignment='center')
 
 
 
