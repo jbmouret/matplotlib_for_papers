@@ -3,7 +3,7 @@ from pylab import *
 x = np.linspace(-np.pi, np.pi, 256)
 y = []
 for i in range(0, 7):
- y += [np.cos(x + i)]
+    y += [np.cos(x + i)]
 
 plot(x, y[0], color='red', linewidth=2.5, linestyle='-', label='linestyle="_"')
 plot(x, y[1], color='blue', linewidth=5, alpha=0.5, linestyle='-', label='linestyle="-"')

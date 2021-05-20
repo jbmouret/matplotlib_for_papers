@@ -4,7 +4,7 @@ from pylab import *
 
 params = {
     'axes.labelsize': 8,
-    'text.fontsize': 8,
+    'font.size': 8,
     'legend.fontsize': 10,
     'xtick.labelsize': 10,
     'ytick.labelsize': 10,
@@ -17,19 +17,21 @@ rcParams.update(params)
 def load(dir):
     f_list = glob.glob(dir + '/*/*/bestfit.dat')
     num_lines = sum(1 for line in open(f_list[0]))
-    i = 0;
-    data = np.zeros((len(f_list), num_lines)) 
+    i = 0
+    data = np.zeros((len(f_list), num_lines))
     for f in f_list:
-        data[i, :] = np.loadtxt(f)[:,1]
+        data[i, :] = np.loadtxt(f)[:, 1]
         i += 1
     return data
 
-# compute the median of each column
+
 def med(data):
+    # compute the median of each column
     median = np.zeros(data.shape[1])
     for i in range(0, len(median)):
         median[i] = np.median(data[:, i])
     return median
+
 
 data_low_mut = load('data/low_mut')
 data_high_mut = load('data/high_mut')
@@ -53,7 +55,7 @@ ylim(-5000, 300)
 
 xticks(np.arange(0, 500, 100))
 
-legend = legend(["Low mutation rate", "High Mutation rate"], loc=4);
+legend = legend(["Low mutation rate", "High Mutation rate"], loc=4)
 frame = legend.get_frame()
 frame.set_facecolor('0.9')
 frame.set_edgecolor('0.9')
